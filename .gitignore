@@ -1,6 +1,7 @@
 # dependencies (bun install)
 docker
 node_modules
+uploads
 
 # output
 out
