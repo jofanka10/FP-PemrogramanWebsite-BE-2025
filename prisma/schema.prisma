@@ -82,3 +82,39 @@ model LikedGames {
 
   @@unique([user_id, game_id])
 }
+
+// ==========================================
+// SLIDING PUZZLE MODULE
+// ==========================================
+
+model SlidingPuzzle {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  imageUrl    String
+  gridSize    Int      @default(3)
+  difficulty  String   @default("easy")
+  category    String   @default("general")
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  scores      SlidingPuzzleScore[]
+  
+  @@map("sliding_puzzles")
+}
+
+model SlidingPuzzleScore {
+  id         String   @id @default(uuid())
+  puzzleId   String
+  playerName String
+  moves      Int
+  timeSpent  Int
+  completed  Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  
+  puzzle     SlidingPuzzle @relation(fields: [puzzleId], references: [id], onDelete: Cascade)
+  
+  @@map("sliding_puzzle_scores")
+  @@index([puzzleId, timeSpent])
+}

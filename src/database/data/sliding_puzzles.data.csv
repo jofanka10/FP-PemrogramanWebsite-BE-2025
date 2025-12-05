@@ -1,0 +1,6 @@
+id,title,description,imageUrl,gridSize,difficulty,category,isActive
+p1,Nature Mountain,Beautiful mountain landscape,https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400,3,easy,nature,true
+p2,City Lights,Modern city at night,https://images.unsplash.com/photo-1514565131-fce0801e5785?w=400,3,easy,urban,true
+p3,Ocean Waves,Peaceful ocean view,https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=400,4,medium,nature,true
+p4,Space Galaxy,Amazing space view,https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400,4,medium,space,true
+p5,Abstract Art,Colorful abstract,https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400,5,hard,art,true

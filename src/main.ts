@@ -10,6 +10,8 @@ import { StatusCodes } from 'http-status-codes';
 import AppRouter from './api/router';
 import { ErrorHandler } from './common';
 
+import slidingPuzzleRoutes from './modules/sliding-puzzle/sliding-puzzle.route.js';
+
 dotenv.config({ quiet: true });
 
 const uploadPath = path.join(__dirname, '..', 'uploads');
@@ -28,7 +30,7 @@ app.use(
 );
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
-
+app.use('/api/sliding-puzzle', slidingPuzzleRoutes);
 app.use('/health', (_, response) =>
   response.status(200).json({
     success: true,
