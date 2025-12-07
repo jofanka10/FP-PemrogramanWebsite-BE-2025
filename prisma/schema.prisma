@@ -69,6 +69,8 @@ model Games {
   @@index([name])
 }
 
+
+
 model LikedGames {
   id                String        @id @default(uuid())
   user_id           String
