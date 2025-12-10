@@ -5,10 +5,12 @@ import { Router } from 'express';
 import { AnagramController } from './anagram/anagram.controller';
 import { PairOrNoPairController } from './pair-or-no-pair/pair-or-no-pair.controller';
 import { QuizController } from './quiz/quiz.controller';
+import { SpeedSortingController } from './speed-sorting/speed-sorting.controller';
 
 const GameListRouter = Router();
 
 GameListRouter.use('/quiz', QuizController);
+GameListRouter.use('/speed-sorting', SpeedSortingController);
 GameListRouter.use('/anagram', AnagramController);
 GameListRouter.use('/pair-or-no-pair', PairOrNoPairController);
 
