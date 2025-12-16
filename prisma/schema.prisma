@@ -28,6 +28,7 @@ model Users {
 
   games             Games[]
   liked_games       LikedGames[]
+  leaderboard       Leaderboard[]
 }
 
 model GameTemplates {
@@ -65,6 +66,7 @@ model Games {
   updated_at        DateTime      @default(now()) @updatedAt
 
   liked             LikedGames[]
+  leaderboard       Leaderboard[]
 
   @@index([name])
 }
@@ -85,38 +87,19 @@ model LikedGames {
   @@unique([user_id, game_id])
 }
 
-// ==========================================
-// SLIDING PUZZLE MODULE
-// ==========================================
+model Leaderboard {
+  id           String   @id @default(uuid())
+  user_id      String?
+  game_id      String
+  score        Int
+  difficulty   String?  // Optional: "easy" | "normal" | "hard"
+  time_taken   Int?     // Time in seconds
 
-model SlidingPuzzle {
-  id          String   @id @default(uuid())
-  title       String
-  description String?
-  imageUrl    String
-  gridSize    Int      @default(3)
-  difficulty  String   @default("easy")
-  category    String   @default("general")
-  isActive    Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  
-  scores      SlidingPuzzleScore[]
-  
-  @@map("sliding_puzzles")
-}
+  user         Users?   @relation(fields: [user_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  game         Games    @relation(fields: [game_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
-model SlidingPuzzleScore {
-  id         String   @id @default(uuid())
-  puzzleId   String
-  playerName String
-  moves      Int
-  timeSpent  Int
-  completed  Boolean  @default(true)
-  createdAt  DateTime @default(now())
+  created_at   DateTime @default(now())
   
-  puzzle     SlidingPuzzle @relation(fields: [puzzleId], references: [id], onDelete: Cascade)
-  
-  @@map("sliding_puzzle_scores")
-  @@index([puzzleId, timeSpent])
+  @@index([game_id, score])
+  @@index([user_id])
 }
