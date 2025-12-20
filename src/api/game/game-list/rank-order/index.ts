@@ -1,21 +1,27 @@
-// FILE LOCATION: src/api/game/game-list/rank-order/index.ts
-// PURPOSE: API routes for Rank Order game
-
 import { Router } from 'express';
+import { validateAuth } from '@/common'; 
 import { RankOrderController } from './controller';
 
 const router = Router();
 
-// POST /api/game/rank-order/validate
-// Validate game creation data
-router.post('/validate', RankOrderController.validateCreate);
+router.post('/validate', (request, response) =>
+  RankOrderController.validateCreate(request, response),
+);
 
-// POST /api/game/rank-order/submit
-// Submit answer and get score
-router.post('/submit', RankOrderController.submitAnswer);
+router.post('/create', validateAuth({}), (request, response) =>
+  RankOrderController.create(request, response),
+);
 
-// GET /api/game/rank-order/:gameId
-// Get game data by ID (for testing)
-router.get('/:gameId', RankOrderController.getGameById);
+router.post('/submit', validateAuth({}), (request, response) =>
+  RankOrderController.submitAnswer(request, response),
+);
+
+router.get('/:gameId', validateAuth({}), (request, response) =>
+  RankOrderController.getGameById(request, response),
+);
+
+router.patch('/:gameId', validateAuth({}), (request, response) =>
+  RankOrderController.update(request, response),
+);
 
 export default router;

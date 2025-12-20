@@ -8,6 +8,7 @@ import { HangmanController } from './hangman/hangman.controller';
 import { MazeChaseController } from './maze-chase/maze-chase.controller';
 import { PairOrNoPairController } from './pair-or-no-pair/pair-or-no-pair.controller';
 import { QuizController } from './quiz/quiz.controller';
+import RankOrderRouter from './rank-order';
 import { SlidingPuzzleController } from './sliding-puzzle/sliding-puzzle.controller';
 import { SpeedSortingController } from './speed-sorting/speed-sorting.controller';
 import { SpinTheWheelController } from './spin-the-wheel/spin-the-wheel.controller';
@@ -19,6 +20,7 @@ import { WhackAMoleController } from './whack-a-mole/whack-a-mole.controller';
 const gameListRouter = Router();
 
 gameListRouter.use('/quiz', QuizController);
+gameListRouter.use('/rank-order', RankOrderRouter);
 gameListRouter.use('/maze-chase', MazeChaseController);
 gameListRouter.use('/sliding-puzzle', SlidingPuzzleController);
 gameListRouter.use('/speed-sorting', SpeedSortingController);

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/naming-convention */
 import { type NextFunction, type Request, type Response } from 'express';
 
 import { ErrorResponse } from '../response';
